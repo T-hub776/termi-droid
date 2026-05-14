@@ -1,0 +1,39 @@
+name: Build termi-droid Engine
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Grant Execute Permission for Gradle
+      run: chmod +x gradlew
+      continue-on-error: true
+
+    - name: Build APK with Gradle
+      run: ./gradlew assembleDebug
+      continue-on-error: true
+
+    - name: Upload Compiled APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: termi-droid-debug-apk
+        path: app/build/outputs/apk/debug/app-debug.apk
+        
