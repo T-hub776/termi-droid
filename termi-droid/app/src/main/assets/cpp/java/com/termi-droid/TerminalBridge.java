@@ -1,4 +1,4 @@
-package com.thub776.termidroid;
+package com.termi-droid;
 
 import android.os.ParcelFileDescriptor;
 import java.io.FileDescriptor;
