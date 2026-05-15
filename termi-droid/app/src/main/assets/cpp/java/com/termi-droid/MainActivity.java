@@ -1,4 +1,4 @@
-package com.termidroid;
+package com.termi-droid;
 
 import android.app.Activity;
 import android.graphics.Color;
